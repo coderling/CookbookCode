@@ -61,3 +61,23 @@ if __name__ == "__main__":
         print("true")
 
 #dict ×Öµä
+#use defaultdict make code sample 
+from collections import defaultdict
+def testDefaultdict():
+    d = {}
+    #when add a elemts
+    pairs = [('a','1'), ('b','2'), ('c','3')]
+    for key, value in pairs:
+        if key not in d:
+            d[key] = []
+        d[key].append(value)
+    print("d => ", d)
+
+    b = defaultdict(list)
+    for key, value in pairs:
+        b[key].append(value)
+    print("b => ", d)
+
+if __name__ == "__main__":
+    print('-'*30, end='\n')
+    testDefaultdict()
