@@ -1,4 +1,4 @@
-
+ï»¿
 #conllections.deque sample
 from collections import deque
 
@@ -34,9 +34,9 @@ class PriorityQueue:
         self._index = 0
 
     def push(self, item, priority):
-        #¿Éµü´ú½á¹¹Ö®¼ä±È½Ï´óĞ¡£¬´Ó×óµ½ÓÒ±È½ÏÓöµ½²»ÏàµÈ£¬·µ»Ø½á¹û¡£
-        #µ«Î´±Ø½á¹¹ÄÚËØÓĞÔªËØ¶¼ÊÇ¿É±È½ÏµÄ£¬Ôö¼Óindex£¬ÓÉÓÚindexÒ»¶¨²»Ò»Ñù£¬ËùÓĞ¿Ï¶¨»áÓĞ½á¹û¡£
-        #_indexĞ¡Ê±ÏÈ²åÈëµÄÔªËØ¡£
+        #å¯è¿­ä»£ç»“æ„ä¹‹é—´æ¯”è¾ƒå¤§å°ï¼Œä»å·¦åˆ°å³æ¯”è¾ƒé‡åˆ°ä¸ç›¸ç­‰ï¼Œè¿”å›ç»“æœã€‚
+        #ä½†æœªå¿…ç»“æ„å†…ç´ æœ‰å…ƒç´ éƒ½æ˜¯å¯æ¯”è¾ƒçš„ï¼Œå¢åŠ indexï¼Œç”±äºindexä¸€å®šä¸ä¸€æ ·ï¼Œæ‰€æœ‰è‚¯å®šä¼šæœ‰ç»“æœã€‚
+        #_indexå°æ—¶å…ˆæ’å…¥çš„å…ƒç´ ã€‚
         heapq.heappush(self._queue, (-priority, self._index, item))
         print(self._queue)
         self._index += 1
@@ -60,7 +60,7 @@ if __name__ == "__main__":
     if (3, Item('a')) < (5, Item('b')):
         print("true")
 
-#dict ×Öµä
+#dict å­—å…¸
 #use defaultdict make code sample 
 from collections import defaultdict
 def testDefaultdict():
@@ -78,6 +78,63 @@ def testDefaultdict():
         b[key].append(value)
     print("b => ", d)
 
+#find common in too dict or diff
+def commonOrDiff():
+    print('-'*30, end='\n')
+    a = {'x':1, 'y':2, 'z':3}
+    b = {'w':10, 'x':11, 'y':2}
+    #common keys
+    print(a.keys() & b.keys())
+    #diff keys
+    print(a.keys() - b.keys())
+    #common items
+    print(a.items() & b.items())
+
 if __name__ == "__main__":
     print('-'*30, end='\n')
     testDefaultdict()
+    commonOrDiff()
+
+#å»é™¤é‡å¤å…ƒç´ ï¼Œå¹¶ä¸”ä¿æŒé›†åˆå…ƒç´ é¡ºåºä¸å˜
+def dedupe(items, key=None):
+    seen = set()
+    for item in items:
+        #å¦‚æœitemä¸æ˜¯å¯å“ˆå¸Œçš„ï¼Œé‚£ä¹ˆé€šè¿‡keyç»™å®šçš„å‡½æ•°æŠŠä»–è½¬æ¢æˆå¯å“ˆå¸Œ
+        val = item if key is None else key(item)
+        if item not in seen:
+            yield item
+            seen.add(item)
+
+def deleteCommon():
+    items = [1, 5, 2, 1, 9, 1, 5, 10]
+    a = list(dedupe(items))
+    print(a)
+
+if __name__ == "__main__":
+    print('-'*30, end='\n')
+    deleteCommon()
+
+
+#Counter use
+from collections import Counter
+def counterUse():
+    words = ['look', 'into', 'my', 'eyes', 'look', 'into', 'my', 'eyes', 'the'
+             ,'eyes', 'the', 'eyes', 'the', 'eyes', 'not', 'around', 'the',
+             'eyes', "don't", 'look', 'around', 'the']
+    words_counter = Counter(words)
+    print(words_counter)
+    print("most_common = >", words_counter.most_common(3))
+    #update
+    morewords = ['why', 'are', 'you' 'not', 'looking', 'in', 'my', 'eyes']
+    words_counter.update(morewords)
+    print("update=>", words_counter)
+    #math 
+    a = Counter(words)
+    b = Counter(morewords)
+    print("add=>", a + b)
+    print("dec=>", b - a)#å°äºç­‰äº0çš„Countä¸åœ¨Counterä¸­å»æ‰ã€‚
+
+
+if __name__ == "__main__":
+    print('-'*30, end='\n')
+    counterUse()
