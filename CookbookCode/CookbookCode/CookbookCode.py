@@ -135,6 +135,68 @@ def counterUse():
     print("dec=>", b - a)#小于等于0的Count不在Counter中去掉。
 
 
+#groupby 
+from operator import itemgetter
+from itertools import groupby
+
+def groupBy():
+    rows = [
+            {'address': '5412 NCLARK','date':'07/01/2012'},
+            {'address': '5148 NCLARK','date':'07/04/2012'},
+            {'address': '5800 E58TH','date':'07/02/2012'},
+            {'address': '2122 NCLARK','date':'07/03/2012'},
+            {'address': '5645 NRAVENSWOOD', 'date': '07/02/2012'},
+            {'address': '1060 WADDISON','date': '07/02/2012'},
+            {'address': '4801 NBROADWAY','date': '07/01/2012'},
+            {'address': '1039 WGRANVILLE', 'date': '07/04/2012'},
+          ]    #sort row first
+    rows.sort(key=itemgetter('date'))
+    #iterate in groups
+    for date, items in groupby(rows, key=itemgetter('date')):
+        print(date)
+        for i in items:
+            print(' ', i)
+
+
+#sub set make
+def makeSubSet():
+    prices= {
+        'ACME':45.23,
+        'AAPL':612.78,
+        'IBM':205.55,
+        'HPQ':37.20,
+        'FB': 10.75
+        }
+    #make a dict of all prices over 200
+    p1 = {key: value for key, value in prices.items() if value > 200}
+    #make a dict of tech stocks
+    tech_names= {'AAPL', 'IBM', 'HPQ', 'MSFT'}
+    p2 = {key: value for key, value in prices.items() if key in tech_names}
+
+    print("p1=>", p1)
+    print("p2=>", p2);
+
+    #also can use dict(),but slower
+    p3 = dict((key, value) for key, value in prices.items() if value > 200)
+    print("p3=>", p3)
+
+#namedtuple
+from collections import namedtuple
+
+def useNametuple():
+    Subscriber = namedtuple('Subscriber', ['addr', 'joined'])
+    sub = Subscriber('jonesy@example.com', '2012-10-19')
+    print("sub=>", sub)
+    print(sub.addr)
+    print(sub.joined)
+
 if __name__ == "__main__":
     print('-'*30, end='\n')
     counterUse()
+    print('-'*30, end='\n')
+    groupBy()
+    print('-'*30, end='\n')
+    makeSubSet()
+    print('-'*30, end='\n')
+    useNametuple()
+
