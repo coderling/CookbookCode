@@ -149,7 +149,8 @@ def groupBy():
             {'address': '1060 WADDISON','date': '07/02/2012'},
             {'address': '4801 NBROADWAY','date': '07/01/2012'},
             {'address': '1039 WGRANVILLE', 'date': '07/04/2012'},
-          ]    #sort row first
+          ]
+    #sort row first
     rows.sort(key=itemgetter('date'))
     #iterate in groups
     for date, items in groupby(rows, key=itemgetter('date')):

@@ -5,7 +5,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>c48d740a-5438-4df3-8e81-0d6055db8692</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>CookbookCode.py</StartupFile>
+    <StartupFile>chapter2_string_and_text.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -22,7 +22,13 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="chapter2_string_and_text.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="CookbookCode.py" />
+    <Compile Include="ExpressionEvaluator.py">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
